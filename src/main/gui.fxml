@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
+   <children>
+      <AnchorPane fx:id="fomenu" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Button layoutX="779.0" layoutY="438.0" mnemonicParsing="false" onAction="#gotomapgen" text="Játék" />
+            <Label fx:id="lose" layoutX="664.0" layoutY="409.0" text="Sajnos a felfedező elhagyta a csapatot és vesztettél!" visible="false" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="mappane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" visible="false">
+          <opaqueInsets>
+              <Insets />
+          </opaqueInsets>
+          <GridPane fx:id="grid" alignment="CENTER" hgap="5.0" layoutX="700.0" prefHeight="900.0" prefWidth="200.0" vgap="5.0">
+    </GridPane>
+          <GridPane fx:id="felho" alignment="CENTER" hgap="5.0" layoutX="700.0" prefHeight="900.0" prefWidth="200.0" vgap="5.0">
+          </GridPane>
+         <Pane fx:id="mapsettings" layoutX="198.0" layoutY="335.0" prefHeight="310.0" prefWidth="200.0" style="-fx-border-color: black;">
+            <children>
+                <Slider fx:id="mapmeret" blockIncrement="1.0" layoutX="1.0" layoutY="87.0" majorTickUnit="1.0" max="20.0" min="10.0" minorTickCount="0" onMouseReleased="#mapgen" prefWidth="200.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="10.0" />
+                <Button fx:id="mapgen" alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="39.0" layoutY="136.0" onAction="#mapgen" text="Új térkép generálása" textAlignment="CENTER" />
+               <Label layoutX="32.0" layoutY="70.0" text="Mekkora legyen a térkép?" />
+               <Button fx:id="mapbeolvas" alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="26.0" layoutY="168.0" onAction="#mapbolvasas" text="Térkép beolvasása fájlból" textAlignment="CENTER" />
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="38.0" layoutY="200.0" onAction="#kodeltuntetes" prefHeight="45.0" prefWidth="125.0" text="Köd eltüntetése (csak teszt céljából)" textAlignment="CENTER" wrapText="true" />
+               <Button fx:id="startgame" alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="38.0" layoutY="251.0" onAction="#startgame" prefHeight="45.0" prefWidth="125.0" text="Játék indítása" textAlignment="CENTER" visible="false" wrapText="true" />
+               <TextField fx:id="playernameinput" alignment="TOP_CENTER" layoutX="14.0" layoutY="40.0" promptText="Playername" text="Player">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </TextField>
+               <Label layoutX="42.0" layoutY="10.0" text="Játékos neve:">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </Label>
+            </children>
+         </Pane>
+         <Pane fx:id="ingamepane" onKeyPressed="#gomblenyomas" prefHeight="900.0" prefWidth="685.0" visible="false">
+            <children>
+               <Label fx:id="energylabel" layoutX="470.0" layoutY="222.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="279.0" layoutY="786.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#fellep" prefHeight="50.0" prefWidth="50.0" text="W" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="21.0" />
+                  </font>
+               </Button>
+               <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="279.0" layoutY="836.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#lelep" prefHeight="50.0" prefWidth="50.0" text="S" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="24.0" />
+                  </font>
+               </Button>
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="329.0" layoutY="836.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#jobbralep" prefHeight="50.0" prefWidth="50.0" text="D" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="24.0" />
+                  </font>
+               </Button>
+               <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" graphicTextGap="0.0" layoutX="229.0" layoutY="836.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#balralep" prefHeight="50.0" prefWidth="50.0" text="A" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" wrapText="true">
+                  <font>
+                     <Font name="System Bold" size="23.0" />
+                  </font>
+               </Button>
+               <Label fx:id="inventorylabel" layoutX="20.0" layoutY="20.0">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Label>
+               <Button fx:id="eatgyum" disable="true" layoutX="507.0" layoutY="44.0" mnemonicParsing="false" onAction="#eatgyum" prefWidth="100.0" text="Gyümölcs(+15)" />
+               <Button fx:id="eathus" disable="true" layoutX="507.0" layoutY="79.0" mnemonicParsing="false" onAction="#eathus" prefWidth="100.0" text="Hús(+25)" />
+               <Button fx:id="eatcsoki" disable="true" layoutX="507.0" layoutY="114.0" mnemonicParsing="false" onAction="#eatcsoki" prefWidth="100.0" text="Csokoládé(+20)" />
+               <Button fx:id="eatkabito" disable="true" layoutX="507.0" layoutY="149.0" mnemonicParsing="false" onAction="#eatkabito" prefWidth="100.0" text="Kábítószer(+20)" />
+               <Button fx:id="eatwhiskey" disable="true" layoutX="507.0" layoutY="184.0" mnemonicParsing="false" onAction="#eatwhiskey" prefWidth="100.0" text="Whiskey(+20)" />
+               <Label layoutX="451.0" layoutY="20.0" text="Energia feltöltése a következővel:">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <Label layoutX="50.0" layoutY="800.0" text="Elérhető Arany:">
+                  <font>
+                     <Font size="20.0" />
+                  </font></Label>
+               <Label fx:id="aranylabel1" alignment="CENTER" layoutX="45.0" layoutY="830.0" text="000 Arany" textAlignment="CENTER">
+                  <font>
+                     <Font size="20.0" />
+                  </font></Label>
+               <Label fx:id="csapatlabel" alignment="CENTER" layoutX="451.0" layoutY="300.0" prefWidth="220.0" text="Csapat:">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Label>
+               <Label fx:id="visszajelzeslabel" alignment="CENTER" layoutX="201.0" layoutY="344.0" prefHeight="301.0" prefWidth="200.0" textFill="RED" />
+            </children>
+         </Pane>
+         <Pane fx:id="falupane" layoutX="450.0" layoutY="225.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+            <children>
+               <Button fx:id="kotelvasarlas" alignment="CENTER" layoutX="50.0" layoutY="71.0" mnemonicParsing="false" onAction="#kotelvasarlas" text="Vásárlás" />
+               <Button fx:id="faklyavasarlas" alignment="CENTER" layoutX="50.0" layoutY="142.0" mnemonicParsing="false" onAction="#faklyavasarlas" text="Vásárlás" />
+               <Button fx:id="gyumolcsvasarlas" alignment="CENTER" layoutX="50.0" layoutY="213.0" mnemonicParsing="false" onAction="#gyumolcsvasarlas" text="Vásárlás" />
+               <Button fx:id="husvasarlas" alignment="CENTER" layoutX="50.0" layoutY="284.0" mnemonicParsing="false" onAction="#husvasarlas" text="Vásárlás" />
+               <Button fx:id="kabitovasarlas" alignment="CENTER" layoutX="50.0" layoutY="355.0" mnemonicParsing="false" onAction="#kabitovasarlas" text="Vásárlás" />
+               <Label layoutX="129.0" layoutY="70.0" text="Kötél">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="129.0" layoutY="141.0" text="Fáklya">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="129.0" layoutY="212.0" text="Gyümölcs">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="129.0" layoutY="283.0" text="Hús">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="129.0" layoutY="354.0" text="Kábítószer">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Button layoutX="299.0" layoutY="397.0" mnemonicParsing="false" onAction="#kilepesafalubol" text="Kilépés a faluból" textAlignment="CENTER" />
+               <Label fx:id="kotelmennyiseg" layoutX="225.0" layoutY="70.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="faklyamennyiseg" layoutX="225.0" layoutY="141.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="gyumolcsmennyiseg" layoutX="225.0" layoutY="212.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="husmennyiseg" layoutX="225.0" layoutY="283.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="kabitomennyiseg" layoutX="225.0" layoutY="354.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="299.0" layoutY="70.0" text="Arany">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="299.0" layoutY="141.0" text="Arany">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="299.0" layoutY="212.0" text="Arany">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="299.0" layoutY="283.0" text="Arany">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="299.0" layoutY="354.0" text="Arany">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="kotelar" layoutX="275.0" layoutY="70.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="faklyaar" layoutX="275.0" layoutY="141.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="gyumolcsar" layoutX="275.0" layoutY="212.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="husar" layoutX="275.0" layoutY="283.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Label fx:id="kabitoar" layoutX="275.0" layoutY="354.0">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Button fx:id="falutarsbuy" layoutX="514.0" layoutY="355.0" mnemonicParsing="false" onAction="#falutarsbuy" text="Vásárlás" visible="false" />
+               <ImageView fx:id="falutarskep" fitHeight="250.0" fitWidth="250.0" layoutX="419.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+               <Label fx:id="falutarsleiras" alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="292.0" prefHeight="35.0" prefWidth="250.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true" />
+            </children>
+         </Pane>
+         <Pane fx:id="tarspane" layoutX="148.0" layoutY="250.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+            <children>
+               <Label fx:id="tarsnev" alignment="CENTER" layoutX="50.0" layoutY="281.0" prefWidth="200.0" text="Label" />
+               <Button layoutX="25.0" layoutY="345.0" mnemonicParsing="false" onAction="#tarsfelvetel" text="Felvétel" />
+               <Label fx:id="tarsleiras" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="312.0" prefHeight="35.0" prefWidth="250.0" text="Label" textAlignment="CENTER" wrapText="true" />
+               <ImageView fx:id="tarskep" fitHeight="250.0" fitWidth="250.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+               <Button layoutX="225.0" layoutY="345.0" mnemonicParsing="false" onAction="#tarselutasit" text="Elutasít" />
+               <Label fx:id="aranylabel" alignment="CENTER" layoutX="105.0" layoutY="349.0" text="000 Arany" textAlignment="CENTER" />
+            </children>
+         </Pane>
+         <Pane fx:id="hajopane" layoutX="197.0" layoutY="345.0" prefHeight="310.0" prefWidth="200.0" style="-fx-background-color: lightgray; -fx-border-color: black;" visible="false">
+            <children>
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="69.0" layoutY="86.0" onAction="#pihen" text="Pihenés" textAlignment="CENTER" />
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="65.0" layoutY="121.0" onAction="#hajoinventorymegnyit" text="Inventory" textAlignment="CENTER" />
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="70.0" layoutY="155.0" onAction="#lepakol" text="Lepakol" textAlignment="CENTER" wrapText="true" />
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="53.0" layoutY="256.0" onAction="#kuldetesvege" text="Küldetés vége" textAlignment="CENTER" wrapText="true" />
+               <Label layoutX="73.0" layoutY="37.0" text="Hajó">
+                  <font>
+                     <Font size="24.0" />
+                  </font>
+               </Label>
+               <Button alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="71.0" layoutY="221.0" onAction="#hajopanekilep" text="Kilépés" textAlignment="CENTER" wrapText="true" />
+            </children>
+         </Pane>
+         <Pane fx:id="hajoinventorypane" layoutX="135.0" layoutY="475.0" onMouseEntered="#choiceclick" prefHeight="86.0" prefWidth="327.0" style="-fx-background-color: lightgray; -fx-border-color: gray;" visible="false">
+            <children>
+               <ChoiceBox fx:id="hajochoice" layoutX="14.0" layoutY="13.0" prefWidth="150.0" />
+               <Label fx:id="hajoinventorydarab" layoutX="173.0" layoutY="12.0" prefHeight="17.0" prefWidth="66.0" text="Darab">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Button fx:id="lepakolgomb" layoutX="256.0" layoutY="13.0" mnemonicParsing="false" onAction="#lepakolgomb" text="Lepakol" />
+               <Button fx:id="felveszgomb" layoutX="256.0" layoutY="13.0" mnemonicParsing="false" onAction="#felveszgomb" text="Felvesz" />
+               <Button fx:id="inventoryvissza" layoutX="138.0" layoutY="47.0" mnemonicParsing="false" onAction="#inventoryvissza" text="Vissza" />
+            </children>
+         </Pane>
+      </AnchorPane>
+      <AnchorPane fx:id="koztespane" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" visible="false">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Pane fx:id="kincspane" layoutX="399.0" layoutY="203.0" prefHeight="494.0" prefWidth="802.0" style="-fx-background-color: white; -fx-border-color: black;">
+               <children>
+                  <Button fx:id="kincsajandek" layoutX="83.0" layoutY="235.0" mnemonicParsing="false" onAction="#kincsajandek" text="Ajándékoz" />
+                  <Button fx:id="kincselad" alignment="CENTER" layoutX="638.0" layoutY="235.0" mnemonicParsing="false" onAction="#kincselad" prefHeight="25.0" prefWidth="71.0" text="Elad" />
+                  <Label layoutX="353.0" layoutY="14.0" text="Kincsek">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kincsdarab" layoutX="364.0" layoutY="453.0" text="10 Darab">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="kincskep" fitHeight="300.0" fitWidth="300.0" layoutX="251.0" layoutY="98.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="86.0" layoutY="272.0" text="+100 Hírnév" />
+                  <Label layoutX="643.0" layoutY="272.0" text="+100 Arany" />
+               </children>
+            </Pane>
+            <Pane fx:id="kikotobolt" layoutX="450.0" layoutY="225.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+               <children>
+                  <Button fx:id="kikotokotel" alignment="CENTER" layoutX="50.0" layoutY="20.0" mnemonicParsing="false" onAction="#kikotokotel" text="Vásárlás" />
+                  <Button fx:id="kikotofaklya" alignment="CENTER" layoutX="50.0" layoutY="76.0" mnemonicParsing="false" onAction="#kikotofaklya" text="Vásárlás" />
+                  <Button fx:id="kikotobozot" alignment="CENTER" layoutX="50.0" layoutY="132.0" mnemonicParsing="false" onAction="#kikotobozot" text="Vásárlás" />
+                  <Button fx:id="kikotohus" alignment="CENTER" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" onAction="#kikotohus" text="Vásárlás" />
+                  <Button fx:id="kikotogolyo" alignment="CENTER" layoutX="50.0" layoutY="244.0" mnemonicParsing="false" onAction="#kikotogolyo" text="Vásárlás" />
+                  <Button fx:id="kikotocsoki" alignment="CENTER" layoutX="50.0" layoutY="300.0" mnemonicParsing="false" onAction="#kikotocsoki" text="Vásárlás" />
+                  <Button fx:id="kikotowhiskey" alignment="CENTER" layoutX="50.0" layoutY="356.0" mnemonicParsing="false" onAction="#kikotowhiskey" text="Vásárlás" />
+                  <Label layoutX="124.0" layoutY="19.0" text="Kötél">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="75.0" text="Fáklya">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="131.0" text="Bozótvágó">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="187.0" text="Hús">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="354.0" text="Whiskey">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="243.0" text="Üveggolyó">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="297.0" text="Csokoládé">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="286.0" layoutY="396.0" mnemonicParsing="false" onAction="#leavekikoto" text="Kilépés a kikötőből" textAlignment="CENTER" />
+                  <Label fx:id="kkmennyi" layoutX="216.0" layoutY="19.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kfmennyi" layoutX="216.0" layoutY="75.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kbmennyi" layoutX="216.0" layoutY="131.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="khmennyi" layoutX="216.0" layoutY="187.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kumennyi" layoutX="216.0" layoutY="243.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kcsmennyi" layoutX="216.0" layoutY="297.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kwmennyi" layoutX="216.0" layoutY="355.0" text="x10">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="19.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="75.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="131.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="187.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="243.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="299.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="299.0" layoutY="355.0" text="Arany">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kkar" layoutX="276.0" layoutY="19.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kfar" layoutX="275.0" layoutY="75.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kbar" layoutX="275.0" layoutY="131.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="khar" layoutX="276.0" layoutY="187.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kuar" layoutX="276.0" layoutY="243.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kcsar" layoutX="276.0" layoutY="299.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kwar" layoutX="275.0" layoutY="354.0" text="20">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kikotopenz" layoutX="439.0" layoutY="184.0" text="Pénzed: 100 Arany">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="ranglista" layoutX="399.0" layoutY="203.0" prefHeight="494.0" prefWidth="802.0" style="-fx-background-color: white; -fx-border-color: black;" visible="false">
+               <children>
+                  <Button fx:id="folytatas" layoutX="369.0" layoutY="441.0" mnemonicParsing="false" onAction="#folytatas" text="Folytatas" />
+                  <Label fx:id="ranglistalabel" alignment="CENTER" layoutX="223.0" layoutY="14.0" prefHeight="38.0" prefWidth="356.0" text="Ranglista">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="elso" alignment="CENTER" layoutX="151.0" layoutY="90.0" prefWidth="500.0" text="1. Player">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="masodik" alignment="CENTER" layoutX="151.0" layoutY="180.0" prefWidth="500.0" text="1. Player">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="harmadik" alignment="CENTER" layoutX="151.0" layoutY="270.0" prefWidth="500.0" text="1. Player">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="negyedik" alignment="CENTER" layoutX="151.0" layoutY="360.0" prefWidth="500.0" text="1. Player">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="jatekvege" layoutX="350.0" layoutY="441.0" mnemonicParsing="false" onAction="#jatekvege" text="Játék befejezése" visible="false" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
